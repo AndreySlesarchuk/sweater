@@ -3,7 +3,7 @@ package com.example.sweater.entity;
 import javax.persistence.*;
 
 @Entity
-public class Message {
+public class Message extends BaseEntity{
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer id;
