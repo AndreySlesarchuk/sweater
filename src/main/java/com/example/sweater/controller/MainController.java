@@ -1,8 +1,8 @@
 package com.example.sweater.controller;
 
-import com.example.sweater.domain.Message;
-import com.example.sweater.domain.User;
-import com.example.sweater.repos.MessageRepo;
+import com.example.sweater.entity.Message;
+import com.example.sweater.entity.User;
+import com.example.sweater.repository.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -21,7 +21,7 @@ import java.util.UUID;
 @Controller
 public class MainController {
     @Autowired
-    private MessageRepo messageRepo;
+    private MessageRepository messageRepository;
 
     @Value("${upload.path}")
     private String uploadPath;
@@ -33,12 +33,12 @@ public class MainController {
 
     @GetMapping("/main")
     public String main(@RequestParam(required = false, defaultValue = "") String filter, Model model) {
-        Iterable<Message> messages = messageRepo.findAll();
+        Iterable<Message> messages = messageRepository.findAll();
 
         if (filter != null && !filter.isEmpty()) {
-            messages = messageRepo.findByTag(filter);
+            messages = messageRepository.findByTag(filter);
         } else {
-            messages = messageRepo.findAll();
+            messages = messageRepository.findAll();
         }
 
         model.addAttribute("messages", messages);
@@ -71,9 +71,9 @@ public class MainController {
             message.setFilename(resultFilename);
         }
 
-        messageRepo.save(message);
+        messageRepository.save(message);
 
-        Iterable<Message> messages = messageRepo.findAll();
+        Iterable<Message> messages = messageRepository.findAll();
 
         model.put("messages", messages);
 

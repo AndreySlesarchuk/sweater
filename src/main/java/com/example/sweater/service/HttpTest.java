@@ -15,14 +15,11 @@ public class HttpTest {
         HttpURLConnection connection = null;
         try {
             connection = (HttpURLConnection) new URL(query+param).openConnection();
-
             connection.setRequestMethod("GET");
             connection.setUseCaches(false);
             connection.setConnectTimeout(250);
             connection.setReadTimeout(250);
-
             connection.connect();
-
             StringBuilder sb = new StringBuilder();
 
             if (HttpURLConnection.HTTP_OK == connection.getResponseCode()) {
@@ -33,7 +30,6 @@ public class HttpTest {
                     sb.append(line);
                     sb.append("\n");
                 }
-
                 System.out.println(sb.toString());
             } else {
                 System.out.println("fail: " + connection.getResponseCode() + ", " + connection.getResponseMessage());

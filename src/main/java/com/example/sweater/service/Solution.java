@@ -16,9 +16,6 @@ public class Solution {
             //convert file into array of bytes
             fileInputStream.read(bFile);
             fileInputStream.close();
-
-//            ByteArrayInputStream bais = new ByteArrayInputStream(bFile);
-//            System.out.println(bais);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -40,7 +37,4 @@ public class Solution {
         out.write(data);
         out.close();
     }
-
-
-
 }
