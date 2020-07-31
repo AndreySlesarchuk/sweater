@@ -1,4 +1,4 @@
-package com.example.sweater.service;
+package com.example.sweater.study;
 
 import java.io.*;
 import java.sql.Blob;
